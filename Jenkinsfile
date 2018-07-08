@@ -2,8 +2,17 @@ pipeline {
   agent any
   stages {
     stage('Get Code') {
-      steps {
-        git 'https://github.com/kuankuo123/SingleProjectDemo.git/'
+      parallel {
+        stage('Get Code') {
+          steps {
+            git 'https://github.com/kuankuo123/SingleProjectDemo.git/'
+          }
+        }
+        stage('') {
+          steps {
+            echo 'Parrallen'
+          }
+        }
       }
     }
     stage('ode Analysis') {
