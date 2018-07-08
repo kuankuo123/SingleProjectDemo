@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Get Code') {
       steps {
-        bat(returnStdout: true, returnStatus: true, script: 'git \'https://github.com/kuankuo123/SingleProjectDemo.git/\'')
+        git 'https://github.com/kuankuo123/SingleProjectDemo.git/'
       }
     }
     stage('ode Analysis') {
@@ -20,6 +20,7 @@ pipeline {
     stage('Package') {
       steps {
         bat 'mvn -Dmaven.test.skip=true package'
+        archive 'target/*.jar'
       }
     }
     stage('Deploy') {
